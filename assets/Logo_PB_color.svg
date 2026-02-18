@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 632.96 632.96">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: url(#Dégradé_sans_nom_27);
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 55px;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_28);
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_29);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_27" data-name="Dégradé sans nom 27" x1="-1031.13" y1="-1350.39" x2="-817.69" y2="-1350.39" gradientTransform="translate(896.01 -1178.23) rotate(-13.9) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff99c3"/>
+      <stop offset="1" stop-color="#f95319"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_28" data-name="Dégradé sans nom 28" x1="-1047.62" y1="-1348.12" x2="-844.49" y2="-1348.12" gradientTransform="translate(896.01 -1178.23) rotate(-13.9) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff99c3"/>
+      <stop offset="1" stop-color="#f95319"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_29" data-name="Dégradé sans nom 29" x1="39.71" y1="-373.08" x2="591.15" y2="-373.08" gradientTransform="translate(0 -56.61) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff99c3"/>
+      <stop offset="1" stop-color="#f95319"/>
+    </linearGradient>
+  </defs>
+  <g id="Calque_311" data-name="Calque 311">
+    <path class="cls-1" d="M241.3,360.28c45.89,70.92,114.73,79.26,152.27,31.29,31.29-39.63-8.34-104.3-58.41-114.73"/>
+  </g>
+  <g id="Calque_231" data-name="Calque 231">
+    <g id="Calque_1-231" data-name="Calque 1-231">
+      <path class="cls-2" d="M239.3,360.28c27.12-14.6,58.41-33.37,77.18-56.32,6.26-8.34,12.52-16.69,16.69-25.03,8.34-18.77,12.52-39.63,10.43-58.41-4.17-29.2-29.2-56.32-58.41-60.49-39.63-4.17-73.01,31.29-79.26,68.84-6.26,37.55,8.34,77.18,25.03,112.64,0,0,4.17,10.43,10.43,18.77,33.37,60.49,123.07,160.62,154.36,193.99"/>
+    </g>
+  </g>
+  <circle class="cls-3" cx="316.48" cy="316.48" r="248.22"/>
+</svg>

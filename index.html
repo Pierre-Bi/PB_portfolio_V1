@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre Bitsch — Directeur Artistique & Graphiste à Strasbourg</title>
+    <meta name="description" content="Portfolio de Pierre Bitsch, Directeur Artistique & Graphiste basé à Strasbourg. Branding, UI/UX, identité visuelle, édition — projets créatifs sélectionnés.">
+    <meta name="keywords" content="Pierre Bitsch, graphiste, directeur artistique, branding, graphisme, Strasbourg, identité visuelle, design graphique, UI/UX, portfolio DA, designer graphiste">
+    <meta property="og:title" content="Pierre Bitsch — Directeur Artistique & Graphiste Strasbourg">
+    <meta property="og:description" content="Portfolio de Pierre Bitsch, Directeur Artistique & Graphiste basé à Strasbourg. Branding, UI/UX, identité visuelle, édition.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
+    <meta property="og:image" content="https://pierrebitsch.fr/assets/Logo_PB_color_full.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <style>
+        /* Petit fix pour que les logos soient entiers dans les cartes */
+        .card-front { background-size: cover; background-repeat: no-repeat; }
+        /* Si tu préfères voir le logo entier avec des bandes, change 'cover' par 'contain' et ajoute une couleur de fond */
+    </style>
+</head>
+<body class="home-body">
+
+    <div id="preloader">
+        <div class="loader-halo"></div>
+    
+            <div class="loader-container">
+                <div class="reveal-line">
+                    <span class="loader-text name">Pierre Bitsch</span>
+                </div>
+                <div class="reveal-line">
+                    <span class="loader-text job">Directeur Artistique</span>
+                </div>
+            </div>
+    </div>
+
+    <nav class="dock-menu">
+        <a href="index.html" class="logo-btn" title="Accueil">
+            <img src="assets/Logo_PB_color_full.svg" alt="Pierre Bitsch — Directeur Artistique" class="logo-img">
+        </a>
+
+        <div class="dock-center-group">
+            <ul class="dock-links">
+                <li><a href="apropos.html" class="dock-item" title="À Propos"><i class="ph ph-user"></i></a></li>
+                <li><a href="archive.html" class="dock-item" title="Archive"><i class="ph ph-folder-open"></i></a></li>
+                <li><a href="contact.html" class="dock-item" title="Contact"><i class="ph ph-envelope-simple"></i></a></li>
+            </ul>
+            <div class="dock-separator"></div>
+            <button class="dock-item theme-toggle" id="theme-toggle-btn"><i class="ph ph-moon"></i></button>
+        </div>
+
+        <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
+    </nav>
+
+    <main class="scene">
+        <div class="carousel">
+            
+            <div class="card" onclick="window.location.href='projet-types.html'" role="link" tabindex="0" aria-label="Voir le projet TYPES — App & Typo">
+                <div class="card-face card-front" style="background-image: url('assets/logoTypes.png'); background-color: #fff;">
+                    <div class="card-content">
+                        <span class="tag">01 — App Design & Édition</span>
+                        <h3>TYPES</h3>
+                    </div>
+                </div>
+                <div class="card-face card-back"><span class="view-project">Voir le projet <i class="ph-bold ph-arrow-right"></i></span></div>
+            </div>
+
+            <div class="card" onclick="window.location.href='projet-format.html'" role="link" tabindex="0" aria-label="Voir le projet Petit Format(s) — Édition">
+                <div class="card-face card-front" style="background-image: url('assets/logoPetitFormat.png'); background-color: #fff;">
+                    <div class="card-content">
+                        <span class="tag">02 — Édition</span>
+                        <h3>PETIT FORMAT(S)</h3>
+                    </div>
+                </div>
+                <div class="card-face card-back"><span class="view-project">Voir le projet <i class="ph-bold ph-arrow-right"></i></span></div>
+            </div>
+
+            <div class="card" onclick="window.location.href='projet-doppler.html'" role="link" tabindex="0" aria-label="Voir le projet Doppler — Branding">
+                <div class="card-face card-front" style="background-image: url('assets/logoDoppler.png'); background-color: #C0583E;">
+                    <div class="card-content">
+                        <span class="tag">03 — Branding</span>
+                        <h3>DOPPLER</h3>
+                    </div>
+                </div>
+                <div class="card-face card-back"><span class="view-project">Voir le projet <i class="ph-bold ph-arrow-right"></i></span></div>
+            </div>
+
+             <div class="card" onclick="window.location.href='projet-pixacare.html'" role="link" tabindex="0" aria-label="Voir le projet Pixacare — MedTech">
+                <div class="card-face card-front" style="background-image: url('assets/logoPixacare.png');">
+                    <div class="card-content">
+                        <span class="tag">04 — MedTech</span>
+                        <h3>PIXACARE</h3>
+                    </div>
+                </div>
+                <div class="card-face card-back"><span class="view-project">Voir le projet <i class="ph-bold ph-arrow-right"></i></span></div>
+            </div>
+
+             <div class="card" onclick="window.location.href='projet-empreinte.html'" role="link" tabindex="0" aria-label="Voir le projet Empreinte — Branding 360°">
+                <div class="card-face card-front" style="background-image: url('assets/logoEmpreintes.png');">
+                    <div class="card-content">
+                        <span class="tag">05 — Branding 360°</span>
+                        <h3>EMPREINTE</h3>
+                    </div>
+                </div>
+                <div class="card-face card-back"><span class="view-project">Voir le projet <i class="ph-bold ph-arrow-right"></i></span></div>
+            </div>
+
+        </div>
+        
+    </main>
+
+    <footer class="site-footer home-footer">
+        <p> &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
+

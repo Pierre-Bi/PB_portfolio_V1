@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive - Pierre Bitsch</title>
+    <meta name="description" content="Sélection de travaux 2020–2025 de Pierre Bitsch, graphiste à Strasbourg : design graphique, branding, advertising, typographie et motion.">
+    <meta name="keywords" content="Pierre Bitsch, archive, travaux, graphiste, design graphique, Strasbourg, branding, advertising, typographie, affiche, motion design">
+    <meta property="og:title" content="Archive — Pierre Bitsch, Graphiste Strasbourg">
+    <meta property="og:description" content="Sélection de travaux 2020–2025 de Pierre Bitsch : design graphique, branding, advertising, typographie et motion.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
+    <meta property="og:image" content="https://pierrebitsch.fr/assets/Logo_PB_color_full.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <style>
+        /* --- GRILLE ÉPURÉE 2x4 --- */
+        
+        .archive-grid-clean {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colonnes */
+            gap: 4rem 2rem; /* 4rem vertical (pour le texte), 2rem horizontal */
+            margin-top: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        /* Le cadre 16:9 (Masque l'image qui dépasse) */
+        .archive-frame {
+            position: relative;
+            background-color: #f0f0f0; /* Fond gris clair pendant chargement */
+            border-radius: var(--radius-m);
+            overflow: hidden;
+            aspect-ratio: 16 / 9; /* FORMAT CINÉMA */
+            cursor: pointer;
+        }
+
+        /* L'image (Prend toute la place) */
+        .archive-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Remplit le cadre sans déformation */
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Zoom fluide */
+        }
+
+        /* Effet au survol : Juste le zoom */
+        .archive-frame:hover .archive-img {
+            transform: scale(1.05);
+        }
+
+        /* Infos sous l'image (Minimaliste) */
+        .archive-infos {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0 0.5rem;
+        }
+
+        .archive-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .archive-year {
+            font-size: 0.9rem;
+            opacity: 0.5;
+            font-family: monospace;
+        }
+
+        /* Mobile : 1 colonne */
+        @media (max-width: 768px) {
+            .archive-grid-clean {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body class="page-scrollable">
+
+    <nav class="dock-menu">
+        <a href="index.html" class="logo-btn" title="Accueil">
+            <img src="assets/Logo_PB_color_full.svg" alt="Pierre Bitsch — Directeur Artistique" class="logo-img">
+        </a>
+        <div class="dock-center-group">
+            <ul class="dock-links">
+                <li><a href="apropos.html" class="dock-item" title="À Propos"><i class="ph ph-user"></i></a></li>
+                <li><a href="archive.html" class="dock-item active" title="Archive"><i class="ph ph-folder-open"></i></a></li>
+                <li><a href="contact.html" class="dock-item" title="Contact"><i class="ph ph-envelope-simple"></i></a></li>
+            </ul>
+            <div class="dock-separator"></div>
+            <button class="dock-item theme-toggle" id="theme-toggle-btn"><i class="ph ph-moon"></i></button>
+        </div>
+        <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
+    </nav>
+
+    <main class="archive-wrapper">
+        <header class="archive-header">
+            <h1 class="page-title">Archive</h1>
+            <p class="page-subtitle">Sélection de travaux 2020 — 2025</p>
+        </header>
+
+        <div class="archive-grid-clean">
+            
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_5.png" class="archive-img" style="object-position: top;" alt="Shadok — Refont" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Shadok</span>
+                    <span class="archive-year">Refont</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_1.png" class="archive-img" alt="Aides — Campaign" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Aides</span>
+                    <span class="archive-year">Campaign</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_2.png" class="archive-img" alt="Dunkin Donut French — Advertising" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Dunkin Donut "French"</span>
+                    <span class="archive-year">Advertising</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_3.png" class="archive-img" alt="War On Screen — Poster" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">War On Screen</span>
+                    <span class="archive-year">Poster</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_6.png" class="archive-img" alt="Pilomo — Design graphique" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Pilomo</span>
+                    <span class="archive-year">Design graphique</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_4.png" class="archive-img" alt="Lettre — Font" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Lettre</span>
+                    <span class="archive-year">Font</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_actuelle.png" class="archive-img" style="background:#f4f4f4; object-fit: cover;" alt="Actuelle 25 — Poster" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Actuelle 25</span>
+                    <span class="archive-year">Poster</span>
+                </div>
+            </div>
+
+            <div class="archive-item-wrapper">
+                <div class="archive-frame">
+                    <img src="assets/img_archives/Archive_map.png" class="archive-img" style="object-position: top;" alt="Design Graphique — Map" loading="lazy">
+                </div>
+                <div class="archive-infos">
+                    <span class="archive-title">Design Graphique</span>
+                    <span class="archive-year">Map</span>
+                </div>
+            </div>
+
+        </div>
+        <footer class="site-footer home-footer">
+            <p> &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
+        </footer>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
