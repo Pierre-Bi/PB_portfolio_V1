@@ -130,7 +130,22 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
 /* =========================================
    3. SCÈNE 3D (HOME)
    ========================================= */
-.scene { height: 100vh; display: flex; justify-content: center; align-items: center; perspective: 1000px; margin-left: var(--dock-width); }
+.scene { height: 100vh; display: flex; justify-content: center; align-items: center; perspective: 1000px; margin-left: var(--dock-width); position: relative; isolation: isolate; }
+
+/* Sphère 3D centrale */
+#sphere-canvas {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+    border-radius: 50%;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 30px rgba(249, 83, 25, 0.75)) drop-shadow(0 0 70px rgba(255, 102, 157, 0.45));
+}
+@media (max-width: 768px) {
+    #sphere-canvas { width: 160px !important; height: 160px !important; }
+}
 .carousel { width: var(--card-width); height: var(--card-height); position: relative; transform-style: preserve-3d; }
 .card { position: absolute; width: 100%; height: 100%; left: 0; top: 0; transform-style: preserve-3d; cursor: pointer; border-radius: var(--radius-m); }
 .card-face { position: absolute; width: 100%; height: 100%; left: 0; top: 0; backface-visibility: hidden; border-radius: var(--radius-m); overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }

@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.fr/assets/Logo_PB_color_full.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* Petit fix pour que les logos soient entiers dans les cartes */
         .card-front { background-size: cover; background-repeat: no-repeat; }
@@ -59,6 +60,7 @@
     </nav>
 
     <main class="scene">
+        <canvas id="sphere-canvas" width="200" height="200"></canvas>
         <div class="carousel">
             
             <div class="card" onclick="window.location.href='projet-types.html'" role="link" tabindex="0" aria-label="Voir le projet TYPES — App & Typo">
@@ -120,6 +122,130 @@
     </footer>
 
     <script src="script.js" defer></script>
+
+    <script>
+    (function() {
+        const canvas = document.getElementById('sphere-canvas');
+        if (!canvas || typeof THREE === 'undefined') return;
+
+        const isMobile = window.innerWidth < 768;
+        const SIZE = isMobile ? 160 : 300;
+        canvas.width  = SIZE;
+        canvas.height = SIZE;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(SIZE, SIZE);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene  = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+        camera.position.z = 3.2;
+
+        const geometry = new THREE.SphereGeometry(1, 128, 128);
+
+        const vertexShader = `
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            varying vec3 vViewDir;
+            void main() {
+                vNormal   = normalize(normalMatrix * normal);
+                vPosition = position;
+                vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+                vViewDir  = normalize(-mvPos.xyz);
+                gl_Position = projectionMatrix * mvPos;
+            }
+        `;
+
+        const fragmentShader = `
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            varying vec3 vViewDir;
+            uniform float uTime;
+
+            float hash(float n) { return fract(sin(n) * 43758.5453); }
+            float hash2(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+
+            float noise(vec3 p) {
+                vec3 i = floor(p);
+                vec3 f = fract(p);
+                f = f * f * (3.0 - 2.0 * f);
+                float n = i.x + i.y * 57.0 + 113.0 * i.z;
+                return mix(
+                    mix(mix(hash(n),       hash(n+1.0),   f.x),
+                        mix(hash(n+57.0),  hash(n+58.0),  f.x), f.y),
+                    mix(mix(hash(n+113.0), hash(n+114.0), f.x),
+                        mix(hash(n+170.0), hash(n+171.0), f.x), f.y),
+                    f.z);
+            }
+
+            float fbm(vec3 p) {
+                float v = 0.0, a = 0.5;
+                for (int i = 0; i < 5; i++) { v += a * noise(p); p *= 2.1; a *= 0.5; }
+                return v;
+            }
+
+            void main() {
+                vec3 orange = vec3(0.976, 0.325, 0.098);
+                vec3 pink   = vec3(1.0,   0.40,  0.616);
+
+                /* Domain warping : déformer le domaine FBM par un autre FBM
+                   → mouvement organique type fluide/lava lamp */
+                float s = 0.06; /* vitesse globale */
+                vec3 p0 = vPosition * 1.8 + vec3(uTime * s, uTime * s * 0.7, uTime * s * 0.5);
+                vec3 warp = vec3(
+                    fbm(p0 + vec3(0.0, 0.0, 0.0)),
+                    fbm(p0 + vec3(1.7, 9.2, 3.4)),
+                    fbm(p0 + vec3(8.3, 2.8, 5.1))
+                );
+                float n = fbm(p0 + warp * 1.2);
+
+                /* Gradient vertical perturbé par le warp */
+                float t = (vPosition.y + 1.0) * 0.5;
+                float blend = clamp(t + (n - 0.5) * 0.85, 0.0, 1.0);
+                vec3 color  = mix(orange, pink, blend);
+
+                /* Profondeur 3D */
+                float NdotV = max(dot(vNormal, vViewDir), 0.0);
+                color *= 0.72 + 0.28 * pow(NdotV, 0.35);
+
+                /* Rim / Fresnel */
+                float fresnel = pow(1.0 - NdotV, 2.0);
+                color += fresnel * mix(pink * 1.4, vec3(1.0, 0.85, 0.55), 0.35) * 0.8;
+
+                /* Spéculaire principal */
+                vec3 light1 = normalize(vec3(-0.8, 1.5, 2.0));
+                color += pow(max(dot(vNormal, light1), 0.0), 48.0) * 0.55 * vec3(1.0, 0.9, 0.85);
+
+                /* Contre-jour chaud */
+                vec3 light2 = normalize(vec3(1.2, -0.8, -1.0));
+                color += pow(max(dot(vNormal, light2), 0.0), 18.0) * 0.18 * orange;
+
+                /* Grain de film statique */
+                color += hash2(gl_FragCoord.xy) * 0.13 - 0.065;
+
+                gl_FragColor = vec4(clamp(color, 0.0, 1.0), 0.97);
+            }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            uniforms: { uTime: { value: 0.0 } },
+            vertexShader,
+            fragmentShader,
+            transparent: true,
+        });
+
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        (function animate() {
+            requestAnimationFrame(animate);
+            material.uniforms.uTime.value += 0.010;
+            sphere.rotation.y += 0.004;
+            sphere.rotation.x += 0.001;
+            renderer.render(scene, camera);
+        })();
+    })();
+    </script>
 </body>
 </html>
 

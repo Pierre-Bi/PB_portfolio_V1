@@ -11,12 +11,85 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.fr/assets/Logo_PB_color_full.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <style>
+        /* ── À PROPOS : mise en page améliorée ── */
+
+        .apropos-top {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3rem 4rem;
+            align-items: start;
+            padding: 2.5rem;
+        }
+
+        .apropos-bio {
+            max-width: 680px;
+            margin: 3rem auto 0;
+            padding: 0 0.5rem;
+        }
+
+        .apropos-bio p {
+            font-size: 1.1rem;
+            line-height: 1.85;
+            opacity: 0.88;
+            margin-bottom: 1.4rem;
+            text-align: left;
+        }
+
+        .apropos-bio p:first-child {
+            font-size: 1.2rem;
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        /* Bande de 3 photos */
+        .about-photo-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 3.5rem;
+        }
+
+        .about-photo-frame {
+            aspect-ratio: 3 / 2;
+            border-radius: var(--radius-m);
+            overflow: hidden;
+            background: var(--glass-bg);
+        }
+
+        .about-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: block;
+        }
+
+        .about-photo-frame:hover img {
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 768px) {
+            .apropos-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            .about-photo-strip {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .apropos-bio {
+                margin-top: 2rem;
+            }
+        }
+    </style>
 </head>
 <body class="page-scrollable">
 
@@ -40,18 +113,17 @@
         <div class="background-orb"></div>
 
         <div class="apropos-container">
-            
+
             <header class="apropos-header">
                 <h1 class="apropos-title">Pierre Bitsch</h1>
-                <p class="apropos-subtitle">Directeur artistique & Designer graphiste</p>
+                <p class="apropos-subtitle">Directeur artistique & Graphiste</p>
             </header>
 
-            <section class="glass-panel apropos-content">
-                
+            <!-- Photo + Disciplines -->
+            <section class="glass-panel apropos-top">
                 <div class="apropos-image">
-                    <img src="assets/pierre-portrait.png" alt="Portrait Pierre Bitsch">
+                    <img src="assets/VFPPP.png" alt="Portrait Pierre Bitsch">
                 </div>
-
                 <div class="apropos-services">
                     <h3>Disciplines</h3>
                     <ul class="services-list">
@@ -63,17 +135,30 @@
                         <li>Motion Design</li>
                     </ul>
                 </div>
+            </section>
 
-                <div class="apropos-text">
-                    <p>Passionné par la stratégie de marque et le design graphique, j’accompagne les projets dans la création d’identités fortes, cohérentes et durables. Mon travail cherche à donner du sens, à raconter une vision claire et à créer un impact réel.</p>
-                    <p>Mon approche est globale et profondément humaine. J’accorde une grande importance à l’écoute, à la compréhension des enjeux et du contexte de chaque projet, afin de construire des identités justes, alignées avec les valeurs et les ambitions de ceux qui les portent.</p>
-                    <p>Sportif dans l’âme, j’aborde chaque projet comme un défi : avec engagement, discipline et esprit d’équipe. J’aime explorer de nouveaux territoires graphiques, croiser les techniques (print, code, 3D) et collaborer avec des profils variés pour toujours aller plus loin.</p>
+            <!-- Texte biographique -->
+            <section class="apropos-bio">
+                <p>Passionné par la stratégie de marque et le design graphique, j'accompagne les projets dans la création d'identités fortes, cohérentes et durables. Mon travail cherche à donner du sens, à raconter une vision claire et à créer un impact réel.</p>
+                <p>Mon approche est globale et profondément humaine. J'accorde une grande importance à l'écoute, à la compréhension des enjeux et du contexte de chaque projet, afin de construire des identités justes, alignées avec les valeurs et les ambitions de ceux qui les portent.</p>
+                <p>Sportif dans l'âme, j'aborde chaque projet comme un défi : avec engagement, discipline et esprit d'équipe. J'aime explorer de nouveaux territoires graphiques, croiser les techniques (print, code, 3D) et collaborer avec des profils variés pour toujours aller plus loin.</p>
+            </section>
+
+            <!-- Bande de 3 photos paysage -->
+            <section class="about-photo-strip">
+                <div class="about-photo-frame">
+                    <img src="assets/about1.png" alt="Pierre Bitsch — Photo 1" loading="lazy">
                 </div>
-                
+                <div class="about-photo-frame">
+                    <img src="assets/about2.png" alt="Pierre Bitsch — Photo 2" loading="lazy">
+                </div>
+                <div class="about-photo-frame">
+                    <img src="assets/about3.png" alt="Pierre Bitsch — Photo 3" loading="lazy">
+                </div>
             </section>
 
         </div>
-        
+
         <footer class="site-footer">
             <p>Copyright &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
         </footer>
