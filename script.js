@@ -201,17 +201,43 @@ if (carousel && cards.length > 0) {
             targetRot = startRot + walk;
         });
         
-        // Mobile
+        // --- TOUCH : snap + inertie ---
+        let touchLastX = 0, touchLastT = 0, touchVel = 0;
+
+        function snapToCard() {
+            targetRot = Math.round(targetRot / theta) * theta;
+        }
+
         scene.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX;
-            startRot = targetRot;
-        });
+            isDown     = true;
+            startX     = e.touches[0].pageX;
+            startRot   = targetRot;
+            touchLastX = startX;
+            touchLastT = Date.now();
+            touchVel   = 0;
+        }, { passive: true });
+
         scene.addEventListener('touchmove', (e) => {
             if (!isDown) return;
-            const x = e.touches[0].pageX;
-            const walk = (x - startX) * 1.5;
-            targetRot = startRot + walk;
+            e.preventDefault(); // bloque le scroll page pendant le swipe
+            const x   = e.touches[0].pageX;
+            const now = Date.now();
+            const dt  = Math.max(now - touchLastT, 1);
+            touchVel   = (x - touchLastX) / dt; // px/ms
+            touchLastX = x;
+            touchLastT = now;
+            targetRot  = startRot + (x - startX) * 1.2;
+        }, { passive: false });
+
+        scene.addEventListener('touchend', () => {
+            isDown     = false;
+            targetRot += touchVel * 150; // momentum : vitesse → degrés
+            snapToCard();
+        });
+
+        scene.addEventListener('touchcancel', () => {
+            isDown = false;
+            snapToCard();
         });
     }
 
