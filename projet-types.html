@@ -25,7 +25,10 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
         }
-        @media (max-width: 768px) { .gallery-row-3 { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .gallery-row-3 { grid-template-columns: 1fr; grid-column: span 1 !important; gap: 1rem; }
+            .gallery-row-3 .gallery-img { aspect-ratio: auto !important; height: auto !important; }
+        }
     </style>
 </head>
 <body class="page-scrollable">

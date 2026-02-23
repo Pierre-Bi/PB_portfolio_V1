@@ -305,6 +305,31 @@ if (archiveItems.length > 0) {
 }
 
 /* =========================================
+   7. SCROLL REVEAL (PAGES PROJET)
+   ========================================= */
+if (document.body.classList.contains('page-scrollable')) {
+    const revealTargets = document.querySelectorAll(
+        '.glass-panel, .project-hero, .gallery-large, .gallery-small, .gallery-row-3'
+    );
+
+    revealTargets.forEach(el => el.classList.add('reveal'));
+
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+
+    revealTargets.forEach((el, i) => {
+        el.style.transitionDelay = `${(i % 3) * 90}ms`;
+        revealObs.observe(el);
+    });
+}
+
+/* =========================================
    6. FOOTER (ANNÉE AUTOMATIQUE)
    ========================================= */
 const footerYear = document.getElementById('footer-year');
