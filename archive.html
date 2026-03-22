@@ -20,65 +20,104 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
     <style>
         /* --- GRILLE ÉPURÉE 2x4 --- */
-        
         .archive-grid-clean {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 colonnes */
-            gap: 4rem 2rem; /* 4rem vertical (pour le texte), 2rem horizontal */
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem 2.5rem;
             margin-top: 2rem;
             margin-bottom: 6rem;
         }
 
-        /* Le cadre 16:9 (Masque l'image qui dépasse) */
+        /* Le cadre image */
         .archive-frame {
             position: relative;
-            background-color: #f0f0f0; /* Fond gris clair pendant chargement */
+            background-color: rgba(255,255,255,0.04);
             border-radius: var(--radius-m);
             overflow: hidden;
-            aspect-ratio: 16 / 9; /* FORMAT CINÉMA */
+            aspect-ratio: 16 / 9;
             cursor: pointer;
+            box-shadow:
+                0 24px 60px rgba(0,0,0,0.4),
+                0 8px 20px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.55s ease;
         }
 
-        /* L'image (Prend toute la place) */
+        /* Lift au survol (comme les cards home) */
+        .archive-item-wrapper:hover .archive-frame {
+            transform: translateY(-7px) scale(1.01);
+            box-shadow:
+                0 36px 80px rgba(0,0,0,0.5),
+                0 14px 30px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+
+        /* Overlay gradient sur l'image */
+        .archive-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .archive-item-wrapper:hover .archive-frame::after { opacity: 1; }
+
+        /* L'image */
         .archive-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Remplit le cadre sans déformation */
+            object-fit: cover;
             display: block;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Zoom fluide */
+            transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        filter 0.65s ease;
         }
-
-        /* Effet au survol : Juste le zoom */
-        .archive-frame:hover .archive-img {
+        .archive-item-wrapper:hover .archive-img {
             transform: scale(1.05);
+            filter: brightness(1.06);
         }
 
-        /* Infos sous l'image (Minimaliste) */
+        /* Infos sous l'image */
         .archive-infos {
-            margin-top: 1rem;
+            margin-top: 1.1rem;
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            padding: 0 0.5rem;
+            align-items: center;
+            padding: 0 0.2rem;
         }
 
+        /* Titre en Clash Display */
         .archive-title {
+            font-family: 'Clash Display', sans-serif;
             font-weight: 500;
             font-size: 1.1rem;
             color: var(--text-main);
+            transition: color 0.3s ease;
         }
+        .archive-item-wrapper:hover .archive-title { color: var(--color-orange); }
 
+        /* Année en pill comme les tags home */
         .archive-year {
-            font-size: 0.9rem;
-            opacity: 0.5;
-            font-family: monospace;
+            font-size: 0.6rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 4px 10px;
+            border-radius: 20px;
         }
 
         /* Mobile : 1 colonne */
         @media (max-width: 768px) {
             .archive-grid-clean {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2.5rem;
             }
         }
     </style>

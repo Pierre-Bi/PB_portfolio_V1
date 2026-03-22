@@ -84,7 +84,7 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     width: 100%;
     height: auto;
     object-fit: contain;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Effet Hover sur le Logo */
@@ -96,7 +96,7 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
 .back-arrow-icon {
     font-size: 1.5rem;
     color: var(--text-main);
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
 }
 
 .logo-btn:hover .back-arrow-icon {
@@ -148,33 +148,105 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
 }
 .carousel { width: var(--card-width); height: var(--card-height); position: relative; transform-style: preserve-3d; }
 .card { position: absolute; width: 100%; height: 100%; left: 0; top: 0; transform-style: preserve-3d; cursor: pointer; border-radius: var(--radius-m); }
-.card-face { position: absolute; width: 100%; height: 100%; left: 0; top: 0; backface-visibility: hidden; border-radius: var(--radius-m); overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+.card-face {
+    position: absolute; width: 100%; height: 100%; left: 0; top: 0;
+    backface-visibility: hidden; border-radius: var(--radius-m); overflow: hidden;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.45),
+        0 10px 25px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.13);
+}
 .card-front { background-size: cover; background-position: center; }
-.card-front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%); z-index: 1; }
-.card-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem; z-index: 2; display: flex; flex-direction: column; gap: 0.3rem; }
-.tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255, 255, 255, 0.7); font-weight: 500; font-family: 'Inter', sans-serif;}
-.card-content h3 { font-size: 1.1rem; font-weight: 500; color: #fff; margin: 0; }
-.card-back { background-color: var(--color-orange); color: #fff; transform: rotateY(180deg); display: flex; justify-content: center; align-items: center; }
-.view-project { font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.card-front::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.35) 40%,
+        rgba(0,0,0,0.05) 70%,
+        rgba(0,0,0,0) 100%
+    );
+    z-index: 1;
+}
+.card-content {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    padding: 1.8rem 1.5rem;
+    z-index: 2;
+    display: flex; flex-direction: column; gap: 0.6rem;
+}
+.tag {
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2.5px;
+    color: rgba(255,255,255,0.9); font-weight: 600; font-family: 'Inter', sans-serif;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 4px 10px; border-radius: 20px;
+    width: fit-content;
+}
+.card-content h3 { font-size: 1.25rem; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.03em; }
+.card-back {
+    background: radial-gradient(circle at 30% 25%, #ff7043 0%, var(--color-orange) 55%, #c94010 100%);
+    color: #fff; transform: rotateY(180deg);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.8rem;
+}
+.card-back-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.05em;
+    opacity: 0.95;
+    margin: 0;
+    text-align: center;
+}
+.view-project { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; letter-spacing: 0.05em; }
 
 /* =========================================
    4. PAGE PROJET (CENTRÉE)
    ========================================= */
 .project-wrapper { padding-left: calc(var(--dock-width) + 2rem); padding-right: 2rem; padding-top: 4rem; padding-bottom: 4rem; width: 100%; }
 .project-container { max-width: var(--content-max-width); margin: 0 auto; }
-.glass-panel { background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border-radius: var(--radius-l); padding: 2.5rem; margin-bottom: 3rem; }
-.project-title { font-size: 3rem; font-weight: 500; margin: 0; line-height: 1.1; color: var(--text-main); }
-.project-meta-grid { display: flex; gap: 3rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; margin-top: 2rem; flex-wrap: wrap;}
-.meta-item .label { color: var(--color-orange); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.3rem; }
-.meta-item .value { font-size: 0.9rem; }
+.glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--radius-l);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow:
+        0 24px 60px rgba(0,0,0,0.35),
+        0 6px 18px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+    position: relative;
+    overflow: hidden;
+}
+/* Trait coloré en haut du panel */
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 2rem; right: 2rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(249,83,25,0.5) 40%, rgba(255,102,157,0.4) 70%, transparent);
+    border-radius: 1px;
+}
+.project-title { font-size: 3rem; font-weight: 600; margin: 0; line-height: 1.1; color: var(--text-main); letter-spacing: -0.01em; }
+.project-meta-grid { display: flex; gap: 3rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+.meta-item .label { color: var(--color-orange); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 0.4rem; font-weight: 600; }
+.meta-item .value { font-size: 0.92rem; opacity: 0.85; }
 .project-hero { width: 100%; height: 60vh; border-radius: var(--radius-l); overflow: hidden; margin-bottom: 3rem; }
 .project-hero img { width: 100%; height: 100%; object-fit: cover; }
 .project-description { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
 .desc-text p { font-size: 1.1rem; line-height: 1.7; opacity: 0.9; margin-bottom: 1.5rem; font-weight: 400; }
 .project-gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-.gallery-large { grid-column: span 2; height: 600px; }
-.gallery-small { grid-column: span 1; height: 400px; }
-.gallery-img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-m); background: #222;}
+.gallery-large { grid-column: span 2; height: 600px; overflow: hidden; border-radius: var(--radius-m); }
+.gallery-small { grid-column: span 1; height: 400px; overflow: hidden; border-radius: var(--radius-m); }
+.gallery-img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-m); background: #222; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease; display: block; }
+@media (hover: hover) {
+    .gallery-img:hover { transform: scale(1.04); filter: brightness(1.08); }
+    .gallery-row-3 .gallery-img:hover { transform: scale(1.03); filter: brightness(1.08); }
+}
 
 /* =========================================
    5. PAGE ARCHIVE (DESIGN ÉDITORIAL 12 COLS)
@@ -220,9 +292,12 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
 .archive-info {
     display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;
     color: var(--text-main); padding-top: 0.5rem; border-top: 1px solid var(--glass-border);
-    position: relative; z-index: 1;
+    position: relative; z-index: 1; transition: color 0.3s ease;
 }
-.archive-year { opacity: 0.5; font-family: 'Inter', sans-serif; }
+.archive-title { transition: color 0.35s ease; }
+.archive-year { opacity: 0.5; font-family: 'Inter', sans-serif; transition: opacity 0.35s ease; }
+.archive-item:hover .archive-title { color: var(--color-orange); }
+.archive-item:hover .archive-year { opacity: 0.9; }
 
 /* Grille Editoriale */
 .item-1 { grid-column: 1 / span 7; } .item-1 .archive-thumb { aspect-ratio: 16/9; }
@@ -471,15 +546,17 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
 }
 
 @keyframes floatOrb {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-40%, -60%) scale(1.1); }
+    0%   { transform: translate(-50%, -50%) scale(1); }
+    25%  { transform: translate(-44%, -58%) scale(1.08); }
+    50%  { transform: translate(-38%, -52%) scale(1.13); }
+    75%  { transform: translate(-53%, -44%) scale(1.05); }
     100% { transform: translate(-50%, -50%) scale(1); }
 }
 /* =========================================
    7. RESPONSIVE MOBILE
    ========================================= */
 @media (max-width: 768px) {
-    :root { --card-width: 280px; --card-height: 200px; --dock-width: 0px; }
+    :root { --card-width: 240px; --card-height: 155px; --dock-width: 0px; }
     
     .dock-menu { top: auto; bottom: 1.5rem; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; height: 70px; min-height: auto; flex-direction: row; justify-content: space-between; padding: 0 1.5rem; background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--glass-border); }
     .dock-top, .dock-bottom { display: none; }
@@ -525,6 +602,35 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     opacity: 1;
     transform: translateY(0);
 }
+
+/* --- SCROLL REVEAL ARCHIVE --- */
+.archive-item-wrapper {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.archive-item-wrapper.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- TRANSITIONS DE PAGE --- */
+.page-scrollable {
+    animation: pageFadeIn 0.4s ease both;
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+body.page-exit {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+/* --- CARD CLICK FEEDBACK --- */
+.card:active .card-face { filter: brightness(0.88); transition: filter 0.1s ease; }
 
 /* --- LOADER (ÉCRAN DE CHARGEMENT) --- */
 #preloader {
@@ -625,10 +731,6 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     letter-spacing: 0.5px;
 }
 
-@media (max-width: 768px) {
-    .apropos-content { grid-template-columns: 1fr; }
-    .apropos-title { font-size: 2.2rem; }
-}
 
 /* --- FOOTER SPÉCIAL ACCUEIL (FIXED) --- */
 .home-footer {

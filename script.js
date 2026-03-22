@@ -242,19 +242,25 @@ if (carousel && cards.length > 0) {
     }
 
 
-    // --- G. SAUVEGARDE CLIC ---
+    // --- G. CLIC : SAUVEGARDE + TRANSITION PAGE ---
     cards.forEach((card, index) => {
-        card.addEventListener('click', (e) => {
-            if (isDown) return; 
+        // Récupère le href depuis l'onclick inline et le désactive
+        const match = card.getAttribute('onclick')?.match(/'([^']+)'/);
+        const href = match ? match[1] : null;
+        if (href) card.setAttribute('onclick', 'void(0)');
 
-            // Angle idéal
-            const idealAngle = -(index * theta);
-            
-            // Optimisation pour éviter les tours complets
+        card.addEventListener('click', () => {
+            if (isDown) return;
+
+            const idealAngle   = -(index * theta);
             const currentRound = Math.round(targetRot / 360);
             const optimizedAngle = idealAngle + (currentRound * 360);
-
             sessionStorage.setItem('carouselAngle', optimizedAngle);
+
+            if (href) {
+                document.body.classList.add('page-exit');
+                setTimeout(() => { window.location.href = href; }, 260);
+            }
         });
     });
 
@@ -281,31 +287,28 @@ document.querySelectorAll('.card[role="link"]').forEach((card) => {
 });
 
 /* =========================================
-   4. ANIMATION ARCHIVE
+   4. ANIMATION ARCHIVE (SCROLL REVEAL)
    ========================================= */
-const archiveItems = document.querySelectorAll('.archive-item');
-if (archiveItems.length > 0) {
-    const observer = new IntersectionObserver((entries) => {
+const archiveWrappers = document.querySelectorAll('.archive-item-wrapper');
+if (archiveWrappers.length > 0) {
+    const archiveObs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
+                entry.target.classList.add('is-visible');
+                archiveObs.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
-    archiveItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 50}ms`;
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(item);
+    archiveWrappers.forEach((item, index) => {
+        // Décalage en paires (colonne gauche/droite) comme sur les pages projet
+        item.style.transitionDelay = `${(index % 2) * 100}ms`;
+        archiveObs.observe(item);
     });
-
-    
 }
 
 /* =========================================
-   7. SCROLL REVEAL (PAGES PROJET)
+   8. SCROLL REVEAL (PAGES PROJET)
    ========================================= */
 if (document.body.classList.contains('page-scrollable')) {
     const revealTargets = document.querySelectorAll(
