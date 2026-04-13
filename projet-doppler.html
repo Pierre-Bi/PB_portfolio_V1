@@ -12,14 +12,14 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/logoDoppler.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/img_doppler/Visuel_Doppler_4.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
-<body class="page-scrollable">
+<body class="page-scrollable" style="--project-accent: rgba(188,84,59,0.65);">
 
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Retour Accueil">
@@ -29,6 +29,7 @@
             <ul class="dock-links">
                 <li><a href="apropos.html" class="dock-item"><i class="ph ph-user"></i></a></li>
                 <li><a href="archive.html" class="dock-item"><i class="ph ph-folder-open"></i></a></li>
+                <li><a href="playground.html" class="dock-item" title="Atelier"><i class="ph ph-magic-wand"></i></a></li>
                 <li><a href="contact.html" class="dock-item"><i class="ph ph-envelope-simple"></i></a></li>
             </ul>
             <div class="dock-separator"></div>
@@ -37,8 +38,9 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="project-wrapper">
-        <div class="project-container">
+    <main class="project-wrapper-v2">
+
+        <div class="project-intro-wrap">
             <header class="glass-panel project-header-content">
                 <h1 class="project-title">DOPPLER</h1>
                 <p style="opacity: 0.6; margin-top: 0.5rem; letter-spacing: 1px;">L'artisanat contemporain réinterprété</p>
@@ -49,30 +51,58 @@
                     <div class="meta-item"><span class="label">Outils</span><span class="value">Illustrator, Figma</span></div>
                 </div>
             </header>
+            <div class="project-nav-arrows">
+                <a href="projet-format.html" class="project-nav-arrow" title="Projet précédent"><i class="ph ph-arrow-left"></i></a>
+                <a href="projet-pixacare.html" class="project-nav-arrow" title="Projet suivant"><i class="ph ph-arrow-right"></i></a>
+            </div>
+        </div>
 
-            <section class="project-hero">
-                <img src="assets/img_doppler/Visuel_Doppler_4.png" alt="Doppler — Visuel Hero" loading="lazy" style="object-fit: contain; background: #BC543B;">
-            </section>
+        <section class="project-mosaic">
 
-            <section class="glass-panel project-description">
-                <div class="desc-sidebar">
-                    <p style="color:var(--color-orange); font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Branding Artisanal</p>
-                </div>
-                <div class="desc-text">
+            <!-- Rangée 1 : Hero pleine largeur, fond terracotta, contain -->
+            <div class="mosaic-cell mc-12 mh-xl">
+                <img src="assets/img_doppler/Visuel_Doppler_4.png" alt="Doppler — Hero" loading="eager" style="object-fit:contain;background:#BC543B;">
+            </div>
+
+            <!-- Rangée 2 : Identité (6/12) + Logo (6/12) -->
+            <div class="mosaic-cell mc-6 mh-lg">
+                <img src="assets/img_doppler/Visuel_Doppler_2.png" alt="Doppler — Identité visuelle" loading="lazy" style="object-fit:contain;background:#fff;">
+            </div>
+            <div class="mosaic-cell mc-6 mh-lg">
+                <img src="assets/img_doppler/Visuel_Doppler_3.png" alt="Doppler — Logo et charte" loading="lazy" style="object-fit:contain;background:#fff;">
+            </div>
+
+            <!-- Rangée 3 : Texte (8/12) + Gradient terracotta (4/12) -->
+            <div class="mosaic-cell mc-8 mh-md mosaic-text-cell">
+                <div>
+                    <span class="mosaic-tag" style="color:var(--color-orange); font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Branding Artisanal</span>
                     <p>Doppler est une menuiserie-ébénisterie spécialisée dans l'agencement sur mesure, basée à Mulhouse. Face à un secteur souvent alourdi par des codes visuels datés, la mission était claire : construire une identité qui modernise l'image du métier sans en trahir l'authenticité ni l'ancrage territorial.</p>
                     <p>Du logo à la charte graphique complète, chaque élément a été pensé pour installer Doppler dans un équilibre précis — la rigueur de l'artisanat et l'épure du contemporain. Un vocabulaire visuel fort, qui revendique son territoire autant qu'il le transcende.</p>
                 </div>
-            </section>
+            </div>
+            <div class="mosaic-cell mc-4 mh-md">
+                <div style="background:linear-gradient(160deg,#BC543B 0%,#8a3a28 60%,#3a1510 100%);width:100%;height:100%;"></div>
+            </div>
 
-            <section class="project-gallery-grid">
-                <div class="gallery-large"><img src="assets/img_doppler/Visuel_Doppler_2.png" class="gallery-img" style="object-fit: contain; background: #fff;" alt="Doppler — Identité visuelle" loading="lazy"></div>
-                <div class="gallery-large"><img src="assets/img_doppler/Visuel_Doppler_3.png" class="gallery-img" style="object-fit: contain; background: #fff;" alt="Doppler — Logo et charte" loading="lazy"></div>
-                <div class="gallery-large"><img src="assets/img_doppler/grille_ Logo.png" class="gallery-img" style="object-fit: contain; background: #F2F2F2;" alt="Doppler — Applications de la marque" loading="lazy"></div>
-            </section>
-        </div>
+            <!-- Stats strip -->
+            <div class="mosaic-cell mosaic-stats-strip reveal">
+                <div class="stat-item"><span class="stat-value">Menuiserie</span><span class="stat-label">Secteur</span></div>
+                <div class="stat-item"><span class="stat-value">Logo + Charte</span><span class="stat-label">Livrables</span></div>
+                <div class="stat-item"><span class="stat-value">Mulhouse</span><span class="stat-label">Ville</span></div>
+                <div class="stat-item"><span class="stat-value">2023</span><span class="stat-label">Année</span></div>
+            </div>
+
+            <!-- Rangée 4 : Grille logo pleine largeur -->
+            <div class="mosaic-cell mc-12 mh-lg">
+                <img src="assets/img_doppler/grille_ Logo.png" alt="Doppler — Grille logo" loading="lazy" style="object-fit:contain;background:#F2F2F2;">
+            </div>
+
+        </section>
+
         <footer class="site-footer home-footer">
             <p> &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
         </footer>
+
     </main>
     <script src="script.js" defer></script>
 </body>

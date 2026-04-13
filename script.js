@@ -1,31 +1,138 @@
 /* =========================================
+   0. TRANSITION : CARROUSEL QUI TOMBE
+   ========================================= */
+(function () {
+    const BG = '#0a0a0a';
+
+    const curtain = document.createElement('div');
+    curtain.id = 'page-curtain';
+
+    /* ── ENTRÉE : on fixe opacity:1 AVANT l'ajout au DOM ──
+       Ainsi le premier pixel rendu est déjà noir — zéro flash */
+    const isEntering = !!sessionStorage.getItem('pageTransition');
+    if (isEntering) {
+        sessionStorage.removeItem('pageTransition');
+        curtain.style.cssText = `
+            position:fixed;inset:0;background:${BG};
+            z-index:9998;opacity:1;pointer-events:all;transition:none;
+        `;
+    }
+
+    document.body.appendChild(curtain);
+
+    /* Démarrer la révélation — noir se dissout pendant que la page monte */
+    if (isEntering) {
+        setTimeout(() => {
+            curtain.style.transition    = 'opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1)';
+            curtain.style.opacity       = '0';
+            curtain.style.pointerEvents = 'none';
+        }, 200);
+    }
+
+    /* ── SORTIE : chute visible, puis noir arrive ── */
+    window.curtainOut = function (cb) {
+        // Teinte la curtain avec la couleur accent du projet en cours
+        const accent = getComputedStyle(document.body).getPropertyValue('--project-accent').trim();
+        if (accent) {
+            curtain.style.background = `radial-gradient(ellipse at 50% 60%, ${accent} 0%, ${BG} 65%)`;
+        } else {
+            curtain.style.background = BG;
+        }
+
+        // 1. La scène s'effondre (hésitation → gravité → blur)
+        const scene = document.querySelector('.scene');
+        if (scene) scene.classList.add('page-falling');
+
+        // 2. Le noir arrive après 200ms — on voit bien la chute d'abord
+        setTimeout(() => {
+            curtain.style.transition    = 'opacity 0.45s cubic-bezier(0.4, 0, 1, 1)';
+            curtain.style.opacity       = '1';
+            curtain.style.pointerEvents = 'all';
+        }, 200);
+
+        // 3. Naviguer une fois le noir total (200 + 450 + marge)
+        setTimeout(cb, 720);
+    };
+})();
+
+/* =========================================
+   CURSEUR CUSTOM
+   ========================================= */
+(function () {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const dot  = document.createElement('div'); dot.id = 'cursor-dot';
+    const ring = document.createElement('div'); ring.id = 'cursor-ring';
+    // Cachés jusqu'au premier mouvement de souris — évite le glissement depuis le coin
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mx = 0, my = 0;
+    let rx = 0, ry = 0;
+    let ready = false;
+
+    document.addEventListener('mousemove', (e) => {
+        mx = e.clientX; my = e.clientY;
+        if (!ready) {
+            // Premier mouvement : snap le ring à la position exacte
+            rx = mx; ry = my;
+            ready = true;
+            dot.style.opacity  = '1';
+            ring.style.opacity = '1';
+        }
+        dot.style.left = mx + 'px';
+        dot.style.top  = my + 'px';
+    });
+
+    (function loop() {
+        if (ready) {
+            rx += (mx - rx) * 0.11;
+            ry += (my - ry) * 0.11;
+            ring.style.left = Math.round(rx * 10) / 10 + 'px';
+            ring.style.top  = Math.round(ry * 10) / 10 + 'px';
+        }
+        requestAnimationFrame(loop);
+    })();
+
+    const hoverSel = 'a, button, .card, .mosaic-cell, .dock-item, .project-nav-arrow, .archive-item, .about-photo-frame, label, input, [role="link"]';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover');
+    });
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => {
+        if (ready) { dot.style.opacity = '1'; ring.style.opacity = '1'; }
+    });
+})();
+
+/* =========================================
    5. PRELOADER (SESSION UNIQUE)
    ========================================= */
 window.addEventListener('load', () => {
     const loader = document.getElementById('preloader');
-    
+
     if (loader) {
-        // On regarde dans la mémoire du navigateur si on est déjà passé
         const hasVisited = sessionStorage.getItem('hasVisited');
 
         if (hasVisited) {
-            // C'est un retour sur l'accueil -> On cache tout de suite
+            // Retour sur l'accueil → masquer immédiatement
             loader.style.display = 'none';
         } else {
-            // C'est la première visite -> On joue l'animation
-            
-            // On note le passage pour la prochaine fois
             sessionStorage.setItem('hasVisited', 'true');
 
-            // On attend 2.5 secondes (temps de lecture)
             setTimeout(() => {
                 loader.classList.add('loader-hidden');
-                
-                // On supprime l'élément une fois l'animation finie
+
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 1000); 
-            }, 2500); 
+                }, 1000);
+            }, 1200);
         }
     }
 });
@@ -108,9 +215,9 @@ if (carousel && cards.length > 0) {
 
     // --- RÉGLAGES "LUXE" ---
     // C'est ici que se joue la fluidité :
-    const tiltLimit = 7;      // Angle très faible (7°) pour la subtilité
-    const rotSmoothing = 0.05; // Inertie Scroll (Lourd)
-    const tiltSmoothing = 0.04; // Inertie Souris (Très fluide, comme dans l'eau)
+    const tiltLimit = 9;       // Légèrement plus prononcé
+    const rotSmoothing = 0.05;  // Inertie Scroll (Lourd)
+    const tiltSmoothing = 0.045; // Inertie Souris (fluide)
 
     // --- A. INITIALISATION ---
     cards.forEach((card, index) => {
@@ -139,8 +246,11 @@ if (carousel && cards.length > 0) {
         const tx = Math.round(currentTiltX * 1000) / 1000;
         const ty = Math.round(currentTiltY * 1000) / 1000;
 
-        // 4. Application
-        carousel.style.transform = `rotateY(${r}deg) rotateX(${tx}deg) rotateY(${ty}deg)`;
+        // 4. Application — tilt sur la scène, spin sur le carrousel
+        if (scene && !scene.classList.contains('page-falling')) {
+            scene.style.transform = `rotateX(${tx}deg) rotateY(${ty}deg)`;
+        }
+        carousel.style.transform = `rotateY(${r}deg)`;
 
         requestAnimationFrame(animate);
     }
@@ -242,7 +352,7 @@ if (carousel && cards.length > 0) {
     }
 
 
-    // --- G. CLIC : SAUVEGARDE + TRANSITION PAGE ---
+    // --- G. CLIC : SAUVEGARDE + EFFET TUNNEL ---
     cards.forEach((card, index) => {
         // Récupère le href depuis l'onclick inline et le désactive
         const match = card.getAttribute('onclick')?.match(/'([^']+)'/);
@@ -258,8 +368,8 @@ if (carousel && cards.length > 0) {
             sessionStorage.setItem('carouselAngle', optimizedAngle);
 
             if (href) {
-                document.body.classList.add('page-exit');
-                setTimeout(() => { window.location.href = href; }, 260);
+                sessionStorage.setItem('pageTransition', '1');
+                curtainOut(() => { window.location.href = href; });
             }
         });
     });
@@ -272,6 +382,32 @@ if (carousel && cards.length > 0) {
         });
     });
 }
+
+/* =========================================
+   BACK DES CARTES : copie du fond du front
+   ========================================= */
+document.querySelectorAll('.card').forEach(card => {
+    const front = card.querySelector('.card-front');
+    const back  = card.querySelector('.card-back');
+    if (!front || !back) return;
+    back.style.backgroundImage    = front.style.backgroundImage;
+    back.style.backgroundColor    = front.style.backgroundColor;
+    back.style.backgroundSize     = 'cover';
+    back.style.backgroundPosition = 'center';
+});
+
+/* =========================================
+   NAVIGATION INTER-PROJETS (transition fluide)
+   ========================================= */
+document.querySelectorAll('.project-nav-arrow, .next-project-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        e.preventDefault();
+        sessionStorage.setItem('pageTransition', '1');
+        window.curtainOut(() => { window.location.href = href; });
+    });
+});
 
 /* =========================================
    ACCESSIBILITÉ : NAVIGATION CLAVIER CARROUSEL
@@ -308,28 +444,71 @@ if (archiveWrappers.length > 0) {
 }
 
 /* =========================================
+   PARALLAX IMAGES MOSAIC (PAGES PROJET)
+   ========================================= */
+if (document.body.classList.contains('page-scrollable')) {
+    const parallaxImgs = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? []
+        : document.querySelectorAll('.mosaic-cell:not(.mosaic-text-cell) img');
+
+    if (parallaxImgs.length > 0) {
+        function updateParallax() {
+            const viewH = window.innerHeight;
+            parallaxImgs.forEach(img => {
+                const cell = img.parentElement;
+                const rect = cell.getBoundingClientRect();
+                // -1 quand la cellule est en bas, +1 quand elle est en haut
+                const progress = (viewH / 2 - (rect.top + rect.height / 2)) / (viewH / 2 + rect.height / 2);
+                const offset = Math.max(-14, Math.min(14, progress * 14));
+                img.style.setProperty('--parallax-y', offset.toFixed(2) + 'px');
+            });
+        }
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        updateParallax();
+    }
+}
+
+/* =========================================
+   PROGRESS BAR DE LECTURE (PAGES PROJET)
+   ========================================= */
+if (document.body.classList.contains('page-scrollable')) {
+    const bar = document.createElement('div');
+    bar.id = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+    }, { passive: true });
+}
+
+/* =========================================
    8. SCROLL REVEAL (PAGES PROJET)
    ========================================= */
 if (document.body.classList.contains('page-scrollable')) {
     const revealTargets = document.querySelectorAll(
-        '.glass-panel, .project-hero, .gallery-large, .gallery-small, .gallery-row-3'
+        '.glass-panel, .project-hero, .gallery-large, .gallery-small, .gallery-row-3, .mosaic-cell'
     );
 
     revealTargets.forEach(el => el.classList.add('reveal'));
 
     const revealObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                revealObs.unobserve(entry.target);
-            }
+        // Trier les cellules visibles par position (haut → bas, gauche → droite)
+        const visible = entries
+            .filter(e => e.isIntersecting)
+            .sort((a, b) => {
+                const dy = a.boundingClientRect.top - b.boundingClientRect.top;
+                return Math.abs(dy) > 10 ? dy : a.boundingClientRect.left - b.boundingClientRect.left;
+            });
+
+        visible.forEach((entry, i) => {
+            entry.target.style.transitionDelay = `${i * 55}ms`;
+            entry.target.classList.add('is-visible');
+            revealObs.unobserve(entry.target);
         });
     }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
 
-    revealTargets.forEach((el, i) => {
-        el.style.transitionDelay = `${(i % 3) * 90}ms`;
-        revealObs.observe(el);
-    });
+    revealTargets.forEach(el => revealObs.observe(el));
 }
 
 /* =========================================
