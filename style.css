@@ -735,28 +735,6 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     to   { opacity: 1; }
 }
 
-/* ── TRANSITION : CARROUSEL QUI TOMBE + ÉCRAN NOIR ───── */
-#page-curtain {
-    position: fixed;
-    inset: 0;
-    background: #0a0a0a;
-    z-index: 9998;
-    pointer-events: none;
-    opacity: 0;
-    will-change: opacity;
-}
-
-/* Keyframe : hésitation → chute avec gravité + blur */
-@keyframes scene-fall {
-    0%   { transform: translateY(0)      scale(1);     opacity: 1;    filter: blur(0px);   }
-    12%  { transform: translateY(-1.8%)  scale(1.015); opacity: 1;    filter: blur(0px);   }
-    100% { transform: translateY(100%)   scale(0.7);   opacity: 0;    filter: blur(18px);  }
-}
-
-.scene.page-falling {
-    animation: scene-fall 0.82s cubic-bezier(0.3, 0, 1, 0.8) forwards !important;
-    pointer-events: none;
-}
 
 /* =========================================
    MOSAÏQUE PROJETS — GRILLE PLEINE LARGEUR
@@ -946,8 +924,21 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     .project-meta-grid { flex-wrap: wrap; gap: 1.5rem; }
     .project-mosaic { grid-template-columns: 1fr; gap: 3px; padding: 0 0.5rem 0.5rem; }
     .mc-12, .mc-8, .mc-6, .mc-4, .mc-3 { grid-column: span 1; }
-    .mh-xl { height: 55vw; } .mh-lg { height: 55vw; }
-    .mh-md, .mh-sm { height: 70vw; }
+    /* Hauteurs adaptées et images non-zoomées sur mobile */
+    .mh-xl { height: 60vw; }
+    .mh-lg { height: 60vw; }
+    .mh-md { height: 72vw; }
+    .mh-sm { height: 55vw; }
+    .mh-auto { min-height: 55vw; }
+    /* Cellule texte : hauteur auto pour ne pas tronquer */
+    .mosaic-text-cell { height: auto !important; min-height: 0 !important; padding: 2rem 1.5rem; }
+    /* Pas de parallax ni zoom sur mobile */
+    .mosaic-cell img {
+        transform: none !important;
+        transition: none !important;
+    }
+    /* Stats strip : 2 colonnes sur mobile */
+    .mosaic-stats-strip { display: grid; grid-template-columns: 1fr 1fr; height: auto !important; }
 }
 
 /* =========================================

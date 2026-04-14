@@ -1,59 +1,8 @@
 /* =========================================
-   0. TRANSITION : CARROUSEL QUI TOMBE
+   0. NAVIGATION DIRECTE (sans animation)
    ========================================= */
-(function () {
-    const BG = '#0a0a0a';
-
-    const curtain = document.createElement('div');
-    curtain.id = 'page-curtain';
-
-    /* ── ENTRÉE : on fixe opacity:1 AVANT l'ajout au DOM ──
-       Ainsi le premier pixel rendu est déjà noir — zéro flash */
-    const isEntering = !!sessionStorage.getItem('pageTransition');
-    if (isEntering) {
-        sessionStorage.removeItem('pageTransition');
-        curtain.style.cssText = `
-            position:fixed;inset:0;background:${BG};
-            z-index:9998;opacity:1;pointer-events:all;transition:none;
-        `;
-    }
-
-    document.body.appendChild(curtain);
-
-    /* Démarrer la révélation — noir se dissout pendant que la page monte */
-    if (isEntering) {
-        setTimeout(() => {
-            curtain.style.transition    = 'opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1)';
-            curtain.style.opacity       = '0';
-            curtain.style.pointerEvents = 'none';
-        }, 200);
-    }
-
-    /* ── SORTIE : chute visible, puis noir arrive ── */
-    window.curtainOut = function (cb) {
-        // Teinte la curtain avec la couleur accent du projet en cours
-        const accent = getComputedStyle(document.body).getPropertyValue('--project-accent').trim();
-        if (accent) {
-            curtain.style.background = `radial-gradient(ellipse at 50% 60%, ${accent} 0%, ${BG} 65%)`;
-        } else {
-            curtain.style.background = BG;
-        }
-
-        // 1. La scène s'effondre (hésitation → gravité → blur)
-        const scene = document.querySelector('.scene');
-        if (scene) scene.classList.add('page-falling');
-
-        // 2. Le noir arrive après 200ms — on voit bien la chute d'abord
-        setTimeout(() => {
-            curtain.style.transition    = 'opacity 0.45s cubic-bezier(0.4, 0, 1, 1)';
-            curtain.style.opacity       = '1';
-            curtain.style.pointerEvents = 'all';
-        }, 200);
-
-        // 3. Naviguer une fois le noir total (200 + 450 + marge)
-        setTimeout(cb, 720);
-    };
-})();
+window.curtainOut = function (cb) { cb(); };
+sessionStorage.removeItem('pageTransition');
 
 /* =========================================
    CURSEUR CUSTOM
