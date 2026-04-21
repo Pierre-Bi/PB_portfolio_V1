@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/img_empreinte/Visuel_FE_7.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/img_empreinte/Visuel_FE_7.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -20,6 +20,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body class="page-scrollable" style="--project-accent: rgba(192,80,45,0.65);">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
 
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Retour Accueil">
@@ -37,7 +39,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="project-wrapper-v2">
+    <main class="project-wrapper-v2" id="main-content">
 
         <div class="project-intro-wrap">
             <header class="glass-panel project-header-content">
@@ -60,10 +62,10 @@
 
             <!-- Rangée 1 : Deux recherches côte à côte -->
             <div class="mosaic-cell mc-6 mh-xl">
-                <img src="assets/img_empreinte/Visuel_FE_7.png" alt="Empreinte — Recherches Noir et Blanc" loading="eager">
+                <img src="assets/img_empreinte/Visuel_FE_7.webp" alt="Empreinte — Recherches Noir et Blanc" loading="eager">
             </div>
             <div class="mosaic-cell mc-6 mh-xl">
-                <img src="assets/img_empreinte/Visuel_FE_8.png" alt="Empreinte — Recherches Couleur" loading="eager">
+                <img src="assets/img_empreinte/Visuel_FE_8.webp" alt="Empreinte — Recherches Couleur" loading="eager">
             </div>
 
             <!-- Rangée 2 : Texte (8/12) + Visuel 1 (4/12) -->
@@ -75,18 +77,18 @@
                 </div>
             </div>
             <div class="mosaic-cell mc-4 mh-lg">
-                <img src="assets/img_empreinte/Visuel_FE_1.png" alt="Empreinte — Visuel 1" loading="lazy">
+                <img src="assets/img_empreinte/Visuel_FE_1.webp" alt="Empreinte — Visuel 1" loading="lazy">
             </div>
 
             <!-- Rangée 3 : Trois visuels égaux -->
             <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_empreinte/Visuel_FE_2.png" alt="Empreinte — Visuel 2" loading="lazy">
+                <img src="assets/img_empreinte/Visuel_FE_2.webp" alt="Empreinte — Visuel 2" loading="lazy">
             </div>
             <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_empreinte/Visuel_FE_5.png" alt="Empreinte — Visuel 5" loading="lazy">
+                <img src="assets/img_empreinte/Visuel_FE_5.webp" alt="Empreinte — Visuel 5" loading="lazy">
             </div>
             <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_empreinte/Visuel_FE_6.png" alt="Empreinte — Visuel 6" loading="lazy">
+                <img src="assets/img_empreinte/Visuel_FE_6.webp" alt="Empreinte — Visuel 6" loading="lazy">
             </div>
 
             <!-- Stats strip -->
@@ -105,6 +107,19 @@
 
     </main>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Empreinte Festival",
+      "url": "https://pierrebitsch.com/projet-empreinte.html",
+      "description": "Branding 360° pour le Craft Market de Strasbourg. Identité visuelle, affiches, motion — là où le geste artisanal rencontre le pixel.",
+      "dateCreated": "2024",
+      "image": "https://pierrebitsch.com/assets/img_empreinte/Visuel_FE_7.webp",
+      "keywords": ["branding 360", "identité festival", "Strasbourg", "affiche", "motion design"],
+      "creator": { "@type": "Person", "name": "Pierre Bitsch", "url": "https://pierrebitsch.com/" }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

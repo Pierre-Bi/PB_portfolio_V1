@@ -21,6 +21,8 @@
 </head>
 <body class="page-scrollable" style="--project-accent: rgba(195,130,60,0.6);">
 
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Retour Accueil">
             <i class="ph-bold ph-arrow-left back-arrow-icon"></i>
@@ -37,7 +39,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="project-wrapper-v2">
+    <main class="project-wrapper-v2" id="main-content">
 
         <div class="project-intro-wrap">
             <header class="glass-panel project-header-content">
@@ -60,7 +62,7 @@
 
             <!-- Rangée 1 : Hero pleine largeur -->
             <div class="mosaic-cell mc-12 mh-xl">
-                <img src="assets/img_Petit_format/Visuel_FPF_hero.png" alt="Petit Format(s) — Hero" loading="eager">
+                <img src="assets/img_Petit_format/Visuel_FPF6.webp" alt="Petit Format(s) — Hero" loading="eager">
             </div>
 
             <!-- Rangée 2 : Texte (8/12) + Visuel process (4/12) -->
@@ -71,27 +73,21 @@
                     <p>Le résultat : un fanzine à tirage limité, entièrement sérigraphié, peuplé de pages d'illustrations originales. La contrainte du format réduit et de l'impression à la main a imposé des choix radicaux qui font aujourd'hui la singularité de l'objet. Une expérience de DA sous pression, menée de A à Z en sept jours.</p>
                 </div>
             </div>
-            <div class="mosaic-cell mc-4 mh-lg">
-                <img src="assets/img_Petit_format/Visuel_FPF6.jpeg" alt="Petit Format(s) — Process éditorial" loading="lazy">
-            </div>
 
             <!-- Rangée 3 : Trois visuels -->
-            <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_Petit_format/Visuel_FPF1.JPG" alt="Petit Format(s) — Visuel 1" loading="lazy">
+            <div class="mosaic-cell mc-6 mh-md">
+                <img src="assets/img_Petit_format/Visuel_FPF1.webp" alt="Petit Format(s) — Visuel 1" loading="lazy">
             </div>
-            <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_Petit_format/Visuel_FPF7.jpeg" alt="Petit Format(s) — Visuel 7" loading="lazy">
-            </div>
-            <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_Petit_format/Visuel_FPF2.JPG" alt="Petit Format(s) — Visuel 2" loading="lazy">
+            <div class="mosaic-cell mc-6 mh-md">
+                <img src="assets/img_Petit_format/Visuel_FPF7.webp" alt="Petit Format(s) — Visuel 7" loading="lazy">
             </div>
 
             <!-- Rangée 4 : Deux visuels mi-largeur -->
             <div class="mosaic-cell mc-6 mh-md">
-                <img src="assets/img_Petit_format/Visuel_FPF3.JPG" alt="Petit Format(s) — Visuel 3" loading="lazy">
+                <img src="assets/img_Petit_format/Visuel_FPF3.webp" alt="Petit Format(s) — Visuel 3" loading="lazy">
             </div>
             <div class="mosaic-cell mc-6 mh-md">
-                <img src="assets/img_Petit_format/Visuel_FPF4.JPG" alt="Petit Format(s) — Visuel 4" loading="lazy">
+                <img src="assets/img_Petit_format/Visuel_FPF4.webp" alt="Petit Format(s) — Visuel 4" loading="lazy">
             </div>
 
             <!-- Stats strip -->
@@ -104,7 +100,7 @@
 
             <!-- Rangée 5 : Visuel final pleine largeur -->
             <div class="mosaic-cell mc-12 mh-lg">
-                <img src="assets/img_Petit_format/Visuel_FPF5.jpg" alt="Petit Format(s) — Visuel 5" loading="lazy">
+                <img src="assets/img_Petit_format/Visuel_FPF5.webp" alt="Petit Format(s) — Visuel 5" loading="lazy">
             </div>
 
         </section>
@@ -115,6 +111,19 @@
         <p> &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
     </footer>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Petit Format(s)",
+      "url": "https://pierrebitsch.com/projet-format.html",
+      "description": "Fanzine sérigraphié né d'une semaine d'immersion au Festival Format à Strasbourg. Direction Artistique au sein d'une équipe de 25 créatifs.",
+      "dateCreated": "2023",
+      "image": "https://pierrebitsch.com/assets/img_Petit_format/Visuel_FPF_hero.png",
+      "keywords": ["fanzine", "sérigraphie", "édition", "direction artistique", "Festival Format"],
+      "creator": { "@type": "Person", "name": "Pierre Bitsch", "url": "https://pierrebitsch.com/" }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

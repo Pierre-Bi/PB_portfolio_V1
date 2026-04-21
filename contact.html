@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -20,6 +20,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body class="page-scrollable">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
 
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Accueil">
@@ -37,7 +39,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="contact-wrapper">
+    <main class="contact-wrapper" id="main-content">
         <div class="background-orb"></div>
 
         <div class="contact-content">
@@ -72,6 +74,21 @@
         <p>Copyright &copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
     </footer>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact — Pierre Bitsch",
+      "url": "https://pierrebitsch.com/contact.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Pierre Bitsch",
+        "email": "pierre.bitsch@gmail.com",
+        "jobTitle": "Directeur Artistique & Graphiste",
+        "address": { "@type": "PostalAddress", "addressLocality": "Strasbourg", "addressCountry": "FR" }
+      }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

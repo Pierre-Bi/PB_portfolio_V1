@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/img_pixacare/Pixacare_Hero.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/img_pixacare/Pixacare_Hero.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -20,6 +20,8 @@
     <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
 </head>
 <body class="page-scrollable" style="--project-accent: rgba(26,95,168,0.65);">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
 
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Retour Accueil"><i class="ph-bold ph-arrow-left back-arrow-icon"></i></a>
@@ -35,7 +37,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="project-wrapper-v2">
+    <main class="project-wrapper-v2" id="main-content">
 
         <div class="project-intro-wrap">
             <header class="glass-panel project-header-content">
@@ -58,7 +60,7 @@
 
             <!-- Rangée 1 : Hero pleine largeur -->
             <div class="mosaic-cell mc-12 mh-xl">
-                <img src="assets/img_pixacare/Pixacare_Hero.png" alt="Pixacare — Hero" loading="eager">
+                <img src="assets/img_pixacare/Pixacare_Hero.webp" alt="Pixacare — Hero" loading="eager">
             </div>
 
             <!-- Rangée 2 : Texte (8/12) + Pictos fond blanc (4/12) -->
@@ -70,7 +72,7 @@
                 </div>
             </div>
             <div class="mosaic-cell mc-4 mh-lg">
-                <img src="assets/img_pixacare/Pictos-Pixacare.png" alt="Pixacare — Pictogrammes" loading="lazy" style="object-fit:contain;background:#fff;">
+                <img src="assets/img_pixacare/Pictos-Pixacare.webp" alt="Pixacare — Pictogrammes" loading="lazy" style="object-fit:contain;background:#fff;">
             </div>
 
             <!-- Rangée 3 : Gradient (4/12) + Interface (4/12) + Web (4/12) -->
@@ -78,10 +80,10 @@
                 <div class="mosaic-gradient" style="background:linear-gradient(160deg,#0a2448 0%,#1e3a5f 50%,#051525 100%);width:100%;height:100%;"></div>
             </div>
             <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_pixacare/Pixacare — Interface application.png" alt="Pixacare — Interface application" loading="lazy">
+                <img src="assets/img_pixacare/Pixacare — Interface application.webp" alt="Pixacare — Interface application" loading="lazy">
             </div>
             <div class="mosaic-cell mc-4 mh-md">
-                <img src="assets/img_pixacare/Pixacare — WEB.png" alt="Pixacare — Site web" loading="lazy">
+                <img src="assets/img_pixacare/Pixacare — WEB.webp" alt="Pixacare — Site web" loading="lazy">
             </div>
 
             <!-- Stats strip -->
@@ -94,7 +96,7 @@
 
             <!-- Rangée 4 : Stand pleine largeur -->
             <div class="mosaic-cell mc-12 mh-lg">
-                <img src="assets/img_pixacare/Pixacare — Stand.png" alt="Pixacare — Stand congrès" loading="lazy">
+                <img src="assets/img_pixacare/Pixacare — Stand.webp" alt="Pixacare — Stand congrès" loading="lazy">
             </div>
 
         </section>
@@ -103,6 +105,19 @@
             <p>&copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
         </footer>
     </main>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Pixacare",
+      "url": "https://pierrebitsch.com/projet-pixacare.html",
+      "description": "Refonte de la DA globale d'une startup MedTech — web, app, print, stand. Humaniser la santé numérique sans perdre la crédibilité scientifique.",
+      "dateCreated": "2024",
+      "image": "https://pierrebitsch.com/assets/img_pixacare/Pixacare_Hero.webp",
+      "keywords": ["branding", "MedTech", "UI/UX", "direction artistique", "santé numérique"],
+      "creator": { "@type": "Person", "name": "Pierre Bitsch", "url": "https://pierrebitsch.com/" }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

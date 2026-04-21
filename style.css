@@ -6,27 +6,27 @@
 :root {
     --color-pink: #ff669d;
     --color-orange: #f95319;
-    
-    --bg-main: #1a1d1d;
+
+    --bg-main: #0c0c0c;
     --text-main: #fffaf5;
-    
-    --glass-bg: rgba(255, 250, 245, 0.03);
-    --glass-border: rgba(255, 250, 245, 0.08);
+
+    --glass-bg: rgba(255, 250, 245, 0.05);
+    --glass-border: rgba(255, 250, 245, 0.10);
     --glass-blur: 20px;
-    
+
     --card-width: 340px;
     --card-height: 220px;
     --radius-l: 32px;
     --radius-m: 16px;
     --dock-width: 70px;
-    --content-max-width: 1000px; 
+    --content-max-width: 1000px;
 }
 
 [data-theme="light"] {
-    --bg-main: #e8e8e8;     
-    --text-main: #121616;    
-    --glass-bg: rgba(255, 255, 255, 0.65); 
-    --glass-border: rgba(255, 255, 255, 0.4);
+    --bg-main: #f5f4f0;
+    --text-main: #111111;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.08);
     --glass-blur: 30px;
 }
 
@@ -89,7 +89,7 @@ body.cursor-click #cursor-ring {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* Fond de secours sur html : évite le flash blanc avant que body soit peint */
-html { background: #0a0a0a; }
+html { background: #0c0c0c; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -922,23 +922,49 @@ body.page-scrollable { overflow-y: auto; overflow-x: hidden; height: auto; }
     .project-wrapper-v2 { margin-left: 0; width: 100%; }
     .project-intro-wrap { padding: 5rem 1.5rem 2rem; }
     .project-meta-grid { flex-wrap: wrap; gap: 1.5rem; }
-    .project-mosaic { grid-template-columns: 1fr; gap: 3px; padding: 0 0.5rem 0.5rem; }
-    .mc-12, .mc-8, .mc-6, .mc-4, .mc-3 { grid-column: span 1; }
-    /* Hauteurs adaptées et images non-zoomées sur mobile */
-    .mh-xl { height: 60vw; }
-    .mh-lg { height: 60vw; }
+
+    /* Flex column pour pouvoir faire des marges négatives (overlap) */
+    .project-mosaic {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0 1rem 2rem;
+    }
+    .mc-12, .mc-8, .mc-6, .mc-4, .mc-3 { width: 100%; }
+
+    /* Hauteurs adaptées */
+    .mh-xl { height: 72vw; }
+    .mh-lg { height: 65vw; }
     .mh-md { height: 72vw; }
     .mh-sm { height: 55vw; }
     .mh-auto { min-height: 55vw; }
-    /* Cellule texte : hauteur auto pour ne pas tronquer */
-    .mosaic-text-cell { height: auto !important; min-height: 0 !important; padding: 2rem 1.5rem; }
+
+    /* Coins arrondis sur chaque cellule image */
+    .mosaic-cell:not(.mosaic-text-cell):not(.mosaic-stats-strip) {
+        border-radius: var(--radius-m);
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Cellule texte */
+    .mosaic-text-cell {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 2.2rem 1.5rem;
+    }
+
+    /* Stats strip */
+    .mosaic-stats-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto !important;
+    }
+
     /* Pas de parallax ni zoom sur mobile */
     .mosaic-cell img {
         transform: none !important;
         transition: none !important;
     }
-    /* Stats strip : 2 colonnes sur mobile */
-    .mosaic-stats-strip { display: grid; grid-template-columns: 1fr 1fr; height: auto !important; }
 }
 
 /* =========================================
@@ -1432,3 +1458,32 @@ body::after {
 /* Si tu as un Dock en bas, on remonte un peu le footer pour pas qu'ils se chevauchent */
 /* Décommente la ligne ci-dessous si le footer touche ton menu */
 /* .home-footer { bottom: 4rem; } */
+
+/* =========================================
+   ACCESSIBILITÉ — FOCUS VISIBLE & SKIP LINK
+   ========================================= */
+:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.skip-link {
+    position: fixed;
+    top: -100%;
+    left: 1rem;
+    z-index: 999999;
+    padding: 0.6rem 1.2rem;
+    background: var(--color-orange);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-m);
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+.skip-link:focus-visible {
+    top: 1rem;
+    outline: 2px solid #fff;
+}

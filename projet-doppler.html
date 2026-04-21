@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/img_doppler/Visuel_Doppler_4.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/img_doppler/Visuel_Doppler_4.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -20,6 +20,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body class="page-scrollable" style="--project-accent: rgba(188,84,59,0.65);">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
 
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Retour Accueil">
@@ -37,7 +39,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="project-wrapper-v2">
+    <main class="project-wrapper-v2" id="main-content">
 
         <div class="project-intro-wrap">
             <header class="glass-panel project-header-content">
@@ -60,15 +62,15 @@
 
             <!-- Rangée 1 : Hero pleine largeur, fond terracotta, contain -->
             <div class="mosaic-cell mc-12 mh-xl">
-                <img src="assets/img_doppler/Visuel_Doppler_4.png" alt="Doppler — Hero" loading="eager" style="object-fit:contain;background:#BC543B;">
+                <img src="assets/img_doppler/Visuel_Doppler_4.webp" alt="Doppler — Hero" loading="eager" style="object-fit:contain;background:#BC543B;">
             </div>
 
             <!-- Rangée 2 : Identité (6/12) + Logo (6/12) -->
             <div class="mosaic-cell mc-6 mh-lg">
-                <img src="assets/img_doppler/Visuel_Doppler_2.png" alt="Doppler — Identité visuelle" loading="lazy" style="object-fit:contain;background:#fff;">
+                <img src="assets/img_doppler/Visuel_Doppler_2.webp" alt="Doppler — Identité visuelle" loading="lazy" style="object-fit:contain;background:#fff;">
             </div>
             <div class="mosaic-cell mc-6 mh-lg">
-                <img src="assets/img_doppler/Visuel_Doppler_3.png" alt="Doppler — Logo et charte" loading="lazy" style="object-fit:contain;background:#fff;">
+                <img src="assets/img_doppler/Visuel_Doppler_3.webp" alt="Doppler — Logo et charte" loading="lazy" style="object-fit:contain;background:#fff;">
             </div>
 
             <!-- Rangée 3 : Texte (8/12) + Gradient terracotta (4/12) -->
@@ -93,7 +95,7 @@
 
             <!-- Rangée 4 : Grille logo pleine largeur -->
             <div class="mosaic-cell mc-12 mh-lg">
-                <img src="assets/img_doppler/grille_ Logo.png" alt="Doppler — Grille logo" loading="lazy" style="object-fit:contain;background:#F2F2F2;">
+                <img src="assets/img_doppler/grille_ Logo.webp" alt="Doppler — Grille logo" loading="lazy" style="object-fit:contain;background:#F2F2F2;">
             </div>
 
         </section>
@@ -103,6 +105,19 @@
         </footer>
 
     </main>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Doppler",
+      "url": "https://pierrebitsch.com/projet-doppler.html",
+      "description": "Branding complet pour une menuiserie-ébénisterie à Mulhouse. Logo et charte graphique — artisanat contemporain réinterprété.",
+      "dateCreated": "2023",
+      "image": "https://pierrebitsch.com/assets/img_doppler/Visuel_Doppler_4.webp",
+      "keywords": ["branding", "identité visuelle", "logo", "menuiserie", "Mulhouse"],
+      "creator": { "@type": "Person", "name": "Pierre Bitsch", "url": "https://pierrebitsch.com/" }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

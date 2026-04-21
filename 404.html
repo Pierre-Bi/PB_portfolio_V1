@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page introuvable — Pierre Bitsch</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/Logo_PB_color.svg" type="image/svg+xml">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <style>
+        .error-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+            padding-left: calc(var(--dock-width) + 2rem);
+        }
+        .error-code {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(6rem, 20vw, 14rem);
+            font-weight: 600;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--color-orange), var(--color-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .error-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 500;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+        .error-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            opacity: 0.5;
+            margin-top: 0.75rem;
+            max-width: 400px;
+        }
+        .error-back {
+            margin-top: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-m);
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(var(--glass-blur));
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .error-back:hover {
+            border-color: var(--color-orange);
+            background: rgba(249, 83, 25, 0.08);
+        }
+        @media (max-width: 768px) {
+            .error-wrapper { padding-left: 2rem; padding-bottom: calc(70px + 2rem); }
+        }
+    </style>
+</head>
+<body class="page-scrollable">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+
+    <nav class="dock-menu">
+        <a href="index.html" class="logo-btn" title="Accueil">
+            <img src="assets/Logo_PB_color_full.svg" alt="Pierre Bitsch — Directeur Artistique" class="logo-img">
+        </a>
+        <div class="dock-center-group">
+            <ul class="dock-links">
+                <li><a href="apropos.html" class="dock-item" title="À Propos"><i class="ph ph-user"></i></a></li>
+                <li><a href="archive.html" class="dock-item" title="Archive"><i class="ph ph-folder-open"></i></a></li>
+                <li><a href="contact.html" class="dock-item" title="Contact"><i class="ph ph-envelope-simple"></i></a></li>
+            </ul>
+            <div class="dock-separator"></div>
+            <button class="dock-item theme-toggle" id="theme-toggle-btn"><i class="ph ph-moon"></i></button>
+        </div>
+        <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
+    </nav>
+
+    <main class="error-wrapper" id="main-content">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page introuvable</h1>
+        <p class="error-subtitle">Cette page n'existe pas ou a été déplacée.</p>
+        <a href="index.html" class="error-back">
+            <i class="ph ph-arrow-left"></i>
+            Retour à l'accueil
+        </a>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

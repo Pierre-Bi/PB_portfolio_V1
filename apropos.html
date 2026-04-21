@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -94,6 +94,8 @@
 </head>
 <body class="page-scrollable">
 
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+
     <nav class="dock-menu">
         <a href="index.html" class="logo-btn" title="Accueil">
             <img src="assets/Logo_PB_color_full.svg" alt="Pierre Bitsch — Directeur Artistique" class="logo-img">
@@ -110,7 +112,7 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="apropos-wrapper">
+    <main class="apropos-wrapper" id="main-content">
         <div class="background-orb"></div>
 
         <div class="apropos-container">
@@ -123,7 +125,7 @@
             <!-- Photo + Disciplines -->
             <section class="glass-panel apropos-top">
                 <div class="apropos-image">
-                    <img src="assets/VFPPP.png" alt="Portrait Pierre Bitsch">
+                    <img src="assets/VFPPP.webp" alt="Portrait Pierre Bitsch">
                 </div>
                 <div class="apropos-services">
                     <h3>Disciplines</h3>
@@ -162,13 +164,13 @@
             <!-- Bande de 3 photos paysage -->
             <section class="about-photo-strip">
                 <div class="about-photo-frame">
-                    <img src="assets/about1.png" alt="Pierre Bitsch — Photo 1" loading="lazy">
+                    <img src="assets/about1.webp" alt="Pierre Bitsch — Photo 1" loading="lazy">
                 </div>
                 <div class="about-photo-frame">
-                    <img src="assets/about2.png" alt="Pierre Bitsch — Photo 2" loading="lazy">
+                    <img src="assets/about2.webp" alt="Pierre Bitsch — Photo 2" loading="lazy">
                 </div>
                 <div class="about-photo-frame">
-                    <img src="assets/about3.png" alt="Pierre Bitsch — Photo 3" loading="lazy">
+                    <img src="assets/about3.webp" alt="Pierre Bitsch — Photo 3" loading="lazy">
                 </div>
             </section>
 
@@ -180,6 +182,24 @@
 
     </main>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "À Propos — Pierre Bitsch",
+      "url": "https://pierrebitsch.com/apropos.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Pierre Bitsch",
+        "jobTitle": "Directeur Artistique & Graphiste",
+        "url": "https://pierrebitsch.com/",
+        "image": "https://pierrebitsch.com/assets/VFPPP.webp",
+        "email": "pierre.bitsch@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Strasbourg", "addressCountry": "FR" },
+        "knowsAbout": ["Direction Artistique", "Branding", "UI/UX Design", "Édition", "Motion Design", "Figma", "Blender"]
+      }
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

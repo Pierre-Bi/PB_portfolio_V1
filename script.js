@@ -36,7 +36,7 @@ sessionStorage.removeItem('pageTransition');
     });
 
     (function loop() {
-        if (ready) {
+        if (!document.hidden && ready) {
             rx += (mx - rx) * 0.11;
             ry += (my - ry) * 0.11;
             ring.style.left = Math.round(rx * 10) / 10 + 'px';
@@ -183,6 +183,8 @@ if (carousel && cards.length > 0) {
 
     // --- C. BOUCLE D'ANIMATION (MOTEUR PHYSIQUE) ---
     function animate() {
+        if (document.hidden) { requestAnimationFrame(animate); return; }
+
         // 1. Lissage Scroll
         currentRot += (targetRot - currentRot) * rotSmoothing;
 

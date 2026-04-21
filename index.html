@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pierre Bitsch — Portfolio">
-    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.png">
+    <meta property="og:image" content="https://pierrebitsch.com/assets/Logo_PB_color_full.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="style.css">
@@ -20,6 +20,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body class="home-body">
+
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
 
     <div id="preloader">
         <div class="loader-halo"></div>
@@ -49,39 +51,39 @@
         <div class="dock-bottom"><div class="clock-vertical" id="clock">00:00</div></div>
     </nav>
 
-    <main class="scene">
+    <main class="scene" id="main-content">
         <div class="carousel">
 
                     <div class="card" onclick="window.location.href='projet-types.html'" role="link" tabindex="0" aria-label="Voir le projet TYPES — App & Typo">
-                <div class="card-face card-front" style="background-image: url('assets/logoTypes.png'); background-color: #f5f5f0;">
+                <div class="card-face card-front" style="background-image: url('assets/logoTypes.webp'); background-color: #f5f5f0;">
                     <div class="card-content"><h3>TYPES</h3></div>
                 </div>
                 <div class="card-face card-back"></div>
             </div>
 
             <div class="card" onclick="window.location.href='projet-format.html'" role="link" tabindex="0" aria-label="Voir le projet Petit Format(s) — Édition">
-                <div class="card-face card-front" style="background-image: url('assets/logoPetitFormat.png'); background-color: #f2f0ec;">
+                <div class="card-face card-front" style="background-image: url('assets/logoPetitFormat.webp'); background-color: #f2f0ec;">
                     <div class="card-content"><h3>PETIT FORMAT(S)</h3></div>
                 </div>
                 <div class="card-face card-back"></div>
             </div>
 
             <div class="card" onclick="window.location.href='projet-doppler.html'" role="link" tabindex="0" aria-label="Voir le projet Doppler — Branding">
-                <div class="card-face card-front" style="background-image: url('assets/logoDoppler.png'); background-color: #C0583E;">
+                <div class="card-face card-front" style="background-image: url('assets/logoDoppler.webp'); background-color: #C0583E;">
                     <div class="card-content"><h3>DOPPLER</h3></div>
                 </div>
                 <div class="card-face card-back"></div>
             </div>
 
             <div class="card" onclick="window.location.href='projet-pixacare.html'" role="link" tabindex="0" aria-label="Voir le projet Pixacare — MedTech">
-                <div class="card-face card-front" style="background-image: url('assets/logoPixacare.png'); background-color: #eaf4f8;">
+                <div class="card-face card-front" style="background-image: url('assets/logoPixacare.webp'); background-color: #eaf4f8;">
                     <div class="card-content"><h3>PIXACARE</h3></div>
                 </div>
                 <div class="card-face card-back"></div>
             </div>
 
             <div class="card" onclick="window.location.href='projet-empreinte.html'" role="link" tabindex="0" aria-label="Voir le projet Empreinte — Branding 360°">
-                <div class="card-face card-front" style="background-image: url('assets/logoEmpreintes.png'); background-color: #1a1a18;">
+                <div class="card-face card-front" style="background-image: url('assets/logoEmpreintes.webp'); background-color: #1a1a18;">
                     <div class="card-content"><h3>EMPREINTE</h3></div>
                 </div>
                 <div class="card-face card-back"></div>
@@ -94,6 +96,23 @@
         <p>&copy; Pierre Bitsch — <span id="footer-year">2025</span></p>
     </footer>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pierre Bitsch",
+      "jobTitle": "Directeur Artistique & Graphiste",
+      "url": "https://pierrebitsch.com/",
+      "image": "https://pierrebitsch.com/assets/VFPPP.webp",
+      "email": "pierre.bitsch@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Strasbourg", "addressCountry": "FR" },
+      "sameAs": [
+        "https://www.linkedin.com/in/pierre-bitsch",
+        "https://www.instagram.com/pierrebitsch"
+      ],
+      "knowsAbout": ["Direction Artistique", "Branding", "UI/UX Design", "Édition", "Motion Design"]
+    }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>
